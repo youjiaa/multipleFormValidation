@@ -1,55 +1,106 @@
 import React from "react";
 import "./style.css";
 
-const regex = {
-    name: /^[a-z ,.'-]+$/i,
-    email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    phone: /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-    message: /^[a-zA-Z\s]*$/
-};
+const regexName = /^[a-z ,.'-]+$/i;
+const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const regexPhone = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const regexMessage = /^[a-zA-Z\s]*$/;
 
 export default function Contact() {
     const [input, setInput] = React.useState({
-        errors: false,
+        errorFirstName: false,
+        errorLastName: false,
+        errorEmail: false,
+        errorPhone: false,
+        errorBox: false,
         touched: false,
         firstName: "",
         lastName: "",
         phone: "",
         email: "",
-        message:""
+        message: "",
     })
+    const [errorMessage, setErrorMessage] = React.useState("")
 
-    const handleChange = (e) => {
-        let value = e.target.value;
-        const isValidName = regex.name.test(value);
-        const isValidEmail = regex.email.test(value);
-        const isValidPhone = regex.phone.test(value);
-        const isValidText = regex.message.test(value);
-        console.log(isValidName)
+
+    const handleChangeFirstName = (e) => {
+        const value = e.target.value;
+        const isValidName = regexName.test(value);
 
         setInput({
-            error: !isValidName || !isValidEmail || !isValidPhone || isValidText,
+            errorFirstName: !isValidName, 
             touched: true,
             firstName: value,
-            lastName: value,
-            phone: "",
-            email: "",
-            message: ""
         });
+
+        if(input.errorFirstName){
+            setErrorMessage("First name is not valid");
+        }
     };
 
-    const handleSubmit = () => {
-        console.log("no submit function yet");
-    };
+    const handleChangeLastName = (e) => {
+        const value = e.target.value;
+        const isValidName = regexName.test(value);
 
-    const handleBlur = () => {
-        console.log("no blur function yet");
+        setInput({
+            errorLastName: !isValidName, 
+            touched: true,
+            lastName: value,
+        });
+
+        if(input.errorLastName){
+            setErrorMessage("Last name is not valid");
+        }
     }
 
-    console.log("errors", input.errors)
+    const handleChangeEmail = (e) => {
+        const value = e.target.value;
+        const isValidEmail = regexEmail.test(String(value));
+
+        setInput({
+            error: !isValidEmail, 
+            touched: true,
+            email: value,
+        });
+
+        if(input.errorEmail){
+            setErrorMessage("Email is not valid");
+        }
+    }
+
+    const handleChangePhone = (e) => {
+        const value = e.target.value;
+        const isValidPhone= regexPhone.test(value);
+
+        setInput({
+            errorPhone: !isValidPhone, 
+            touched: true,
+            phone: value,
+        });
+
+        if(input.errorPhone){
+            setErrorMessage("Phone is not valid");
+        }
+    }
+
+    const handleChangeMessage = (e) => {
+        const value = e.target.value;
+        const isValidText = regexMessage.test(value);
+
+        setInput({
+            error: !isValidText, 
+            touched: true,
+            message: value,
+        });
+
+        if(input.errorBox){
+            setErrorMessage("Input is not valid");
+        }
+    }
+
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <label htmlFor="firstName" style={{ display: "block" }}>
                     First Name
                 </label>
@@ -58,14 +109,15 @@ export default function Contact() {
                     placeholder="Enter your first name"
                     type="text"
                     value={input.firstName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                    onChange={handleChangeFirstName}
                     className={
-                        input.errors && input.touched
+                        input.errorFirstName && input.touched
                             ? "text-input error"
                             : "text-input"
                     }
+                    required
                 />
+                {input.errorFirstName ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
 
                 <label htmlFor="lastName" style={{ display: "block" }}>
                     Last Name
@@ -75,14 +127,33 @@ export default function Contact() {
                     placeholder="Enter your last name"
                     type="text"
                     value={input.lastName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                    onChange={handleChangeLastName}
                     className={
-                        input.errors && input.touched
+                        input.errorLastName && input.touched
                             ? "text-input error"
                             : "text-input"
                     }
+                    required
                 />
+                {input.errorLastName ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
+
+                <label htmlFor="email" style={{ display: "block" }}>
+                    Email
+                </label>
+                <input
+                    id="email"
+                    placeholder="Enter your email"
+                    type="text"
+                    value={input.email}
+                    onChange={handleChangeEmail}
+                    className={
+                        input.errorEmail && input.touched
+                            ? "text-input error"
+                            : "text-input"
+                    }
+                    required
+                />
+                {input.errorEmail ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
 
                 <label htmlFor="phone" style={{ display: "block" }}>
                     Phone Number
@@ -92,14 +163,32 @@ export default function Contact() {
                     placeholder="Enter your phone"
                     type="text"
                     value={input.phone}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                    onChange={handleChangePhone}
                     className={
-                        input.errors && input.touched
+                        input.errorPhone && input.touched
                             ? "text-input error"
                             : "text-input"
                     }
                 />
+                {input.errorPhone ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
+
+                <label htmlFor="messageBox" style={{ display: "block" }}>
+                    Message Box
+                </label>
+                <textarea
+                    id="messageBox"
+                    placeholder="Enter your message here"
+                    type="text"
+                    value={input.message}
+                    onChange={handleChangeMessage}
+                    className={
+                        input.errorBox && input.touched
+                            ? "text-input error"
+                            : "text-input"
+                    }
+                    rows="10"
+                />
+                {input.errorBox ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
 
             </form>
         </>
