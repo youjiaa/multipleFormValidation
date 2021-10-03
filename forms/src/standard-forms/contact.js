@@ -10,7 +10,8 @@ const regex = {
 
 export default function Contact() {
     const [input, setInput] = React.useState({
-        error: false,
+        errors: false,
+        touched: false,
         value: ""
     })
 
@@ -20,17 +21,19 @@ export default function Contact() {
 
         setInput({
             error: !isValid,
+            touched: true,
             value: value
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        async values => {
-            await new Promise(resolve => setTimeout(resolve, 500));
-            alert(JSON.stringify(values, null, 2));
-        }
+        console.log("hello")
     };
+
+    const handleBlur = () => {
+        console.log("hi")
+    }
 
     return (
         <>
@@ -46,7 +49,7 @@ export default function Contact() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                        errors.firstName && touched.firstName
+                        input.errors.name && input.touched.name
                             ? "text-input error"
                             : "text-input"
                     }
