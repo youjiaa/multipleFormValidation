@@ -20,11 +20,11 @@ function App() {
         <nav >
           <ul className="table">
             <li>
-              <Link to="/signin">Signin</Link>
+              <Link to="/signup">Signup</Link>
               </li>
             <li>
-              <Link to="/signup">Signup</Link>
-            </li>
+              <Link to="/signin">Signin</Link>
+              </li>
             <li>
               <Link to="/account">Account</Link>
               </li>
