@@ -11,13 +11,13 @@ export default function Signup() {
         validate={values => {
           const errors = {};
           if (!values.firstName) {
-            errors.firstName = "firstName is Required";
+            errors.firstName = "first name is Required";
           }
           if (!values.lastName) {
-            errors.lastName = "lastName is Required";
+            errors.lastName = "last name is Required";
           }
            if (!values.email) {
-           errors.email = 'Required';
+           errors.email = 'email is Required';
          } else if (
            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
          ) {
@@ -41,12 +41,12 @@ export default function Signup() {
           <Form>
             <label>First Name:</label>
             <Field type="text" name="firstName" />
-            <ErrorMessage name="firstName" component="div" />
+            <ErrorMessage className="input-feedback" name="firstName" component="div" />
             <br />
 
             <label>Last Name:</label>
             <Field type="text" name="lastName" />
-            <ErrorMessage name="lastName" component="div" />
+            <ErrorMessage className="input-feedback" name="lastName" component="div" />
             <br />
 
             <label>Email:</label>
@@ -56,8 +56,9 @@ export default function Signup() {
              onChange={handleChange}
              onBlur={handleBlur}
              value={values.email}
-           />
-            {errors.email && touched.email && errors.email}
+            />
+            <div className="input-feedback">{errors.email && touched.email && errors.email}</div>
+            
             <br />
 
             <label>Password:</label>
@@ -67,8 +68,10 @@ export default function Signup() {
              onChange={handleChange}
              onBlur={handleBlur}
              value={values.password}
-           />
+            />
+            <div className="input-feedback">
             {errors.password && touched.password && errors.password}
+            </div>
             <br />
 
             <label>Re-enter Password:</label>
