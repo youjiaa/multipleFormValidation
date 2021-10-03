@@ -1,6 +1,6 @@
 import './App.css';
-import Signin from "./advanced-forms/signup";
-import Login from "./advanced-forms/signin";
+import Login from "./advanced-forms/signup";
+import Signin from "./advanced-forms/signin";
 import Account from "./advanced-forms/account";
 import Contact from "./advanced-forms/contact";
 
@@ -25,87 +25,87 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <div>
-          <Collapsible trigger="Advanced Forms">
-            <nav >
-              <ul className="table">
-                <li>
-                  <Link to="/signin">Sign In</Link>
+      <div>
+        <Collapsible trigger="Advanced Forms">
+          <nav >
+            <ul className="table">
+              <li>
+                <Link to="/login">Login</Link>
                 </li>
-                <li>
-                  <Link to="/login">Login</Link>
+              <li>
+                <Link to="/signup">Sign Up</Link>
                 </li>
-                <li>
-                  <Link to="/account">Account</Link>
+              <li>
+                <Link to="/account">Account</Link>
                 </li>
-                <li>
-                  <Link to="/contact">Contact Me</Link>
-                </li>
-              </ul>
-            </nav>
+              <li>
+                <Link to="/contact">Contact Me</Link>
+              </li>
+            </ul>
+          </nav>
 
-            <div className="container">
-              <Switch>
-                <Route path="/signin">
-                  <Signin />
-                </Route>
-                <Route path="/login">
-                  <Login />
-                </Route>
-                <Route path="/account">
-                  <Account />
-                </Route>
-                <Route path="/contact">
-                  <Contact />
-                </Route>
-              </Switch>
-            </div>
-          </Collapsible>
-
-          <br />
-          <hr />
-          <br />
-
-          <Collapsible trigger="Standard Forms" >
-            <nav>
-              <ul className="table">
-                <li>
-                  <Link to="/standard-signin">Sign In</Link>
-                </li>
-                <li>
-                  <Link to="/standard-login">Login</Link>
-                </li>
-                <li>
-                  <Link to="/standard-account">Account</Link>
-                </li>
-                <li>
-                  <Link to="/standard-contact">Contact Me</Link>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="container">
-              <Switch>
-                <Route path="/standard-signin">
-                  <StandardSignin />
-                </Route>
-                <Route path="/standard-login">
-                  <StandardLogin />
-                </Route>
-                <Route path="/standard-account">
-                  <StandardAccount />
-                </Route>
-                <Route path="/standard-contact">
-                  <StandardContact />
-                </Route>
-              </Switch>
-            </div>
-          </Collapsible>
-
-
-
+          <div className="container">
+        <Switch>
+          <Route path="/login">
+            <Login />
+            </Route>
+          <Route path="/signup">
+            <Signin />
+          </Route>
+          <Route path="/account">
+            <Account />
+            </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          </Switch>
         </div>
-      </Router>
+        </Collapsible>
+
+        <br />
+        <hr />
+        <br />
+
+        <Collapsible trigger="Standard Forms" >
+          <nav> 
+            <ul className="table">
+              <li>
+                <Link to="/standard-login">Login</Link>
+                </li>
+              <li>
+                <Link to="/standard-signup">Sign Up</Link>
+                </li>
+              <li>
+                <Link to="/standard-account">Account</Link>
+                </li>
+              <li>
+                <Link to="/standard-contact">Contact Me</Link>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="container">
+        <Switch>
+          <Route path="/standard-signin">
+            <StandardSignin />
+            </Route>
+          <Route path="/standard-login">
+            <StandardLogin />
+          </Route>
+          <Route path="/standard-account">
+            <StandardAccount />
+            </Route>
+          <Route path="/standard-contact">
+            <StandardContact />
+          </Route>
+          </Switch>
+        </div>
+        </Collapsible>
+       
+
+      
+      </div>
+    </Router>
     </div>
   );
 }
