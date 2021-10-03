@@ -19,21 +19,23 @@ export default function Contact() {
         phone: "",
         email: "",
         message: "",
-    })
-    const [errorMessage, setErrorMessage] = React.useState("")
-
+    });
+    const [errorMessage, setErrorMessage] = React.useState("");
+    const [isClicking, setIsClicking] = React.useState(false);
+    const [isDisabled, setIsDisabled] = React.useState(false);
+    let isSubmitting = false;
 
     const handleChangeFirstName = (e) => {
         const value = e.target.value;
         const isValidName = regexName.test(value);
 
         setInput({
-            errorFirstName: !isValidName, 
+            errorFirstName: !isValidName,
             touched: true,
             firstName: value,
         });
 
-        if(input.errorFirstName){
+        if (input.errorFirstName) {
             setErrorMessage("First name is not valid");
         }
     };
@@ -43,12 +45,12 @@ export default function Contact() {
         const isValidName = regexName.test(value);
 
         setInput({
-            errorLastName: !isValidName, 
+            errorLastName: !isValidName,
             touched: true,
             lastName: value,
         });
 
-        if(input.errorLastName){
+        if (input.errorLastName) {
             setErrorMessage("Last name is not valid");
         }
     }
@@ -58,27 +60,27 @@ export default function Contact() {
         const isValidEmail = regexEmail.test(String(value));
 
         setInput({
-            error: !isValidEmail, 
+            error: !isValidEmail,
             touched: true,
             email: value,
         });
 
-        if(input.errorEmail){
+        if (input.errorEmail) {
             setErrorMessage("Email is not valid");
         }
     }
 
     const handleChangePhone = (e) => {
         const value = e.target.value;
-        const isValidPhone= regexPhone.test(value);
+        const isValidPhone = regexPhone.test(value);
 
         setInput({
-            errorPhone: !isValidPhone, 
+            errorPhone: !isValidPhone,
             touched: true,
             phone: value,
         });
 
-        if(input.errorPhone){
+        if (input.errorPhone) {
             setErrorMessage("Phone is not valid");
         }
     }
@@ -88,15 +90,26 @@ export default function Contact() {
         const isValidText = regexMessage.test(value);
 
         setInput({
-            error: !isValidText, 
+            error: !isValidText,
             touched: true,
             message: value,
         });
 
-        if(input.errorBox){
+        if (input.errorBox) {
             setErrorMessage("Input is not valid");
         }
     }
+
+    const handleClick = () => {
+        setIsClicking(!isClicking)
+
+        if(input.touched){
+            setIsDisabled(false)
+        } else {
+            setIsDisabled(false)
+        }
+    }
+
 
     return (
         <>
@@ -189,6 +202,19 @@ export default function Contact() {
                     rows="10"
                 />
                 {input.errorBox ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
+
+                <button
+                    type="button"
+                    className="outline"
+                    onClick={handleClick}
+                    disabled={isDisabled}
+                >
+                    Reset
+                </button>
+                {(input.firstName&&input.lastName&&input.email === null) ? isSubmitting === false : isSubmitting === true}
+                <button type="submit" disabled={isSubmitting}>
+                    Submit
+                </button>
 
             </form>
         </>
