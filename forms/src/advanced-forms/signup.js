@@ -9,7 +9,10 @@ export default function Signup() {
         validate={values => {
           const errors = {};
           if (!values.firstName) {
-            errors.firstName = "Required";
+            errors.firstName = "firstName is Required";
+          }
+          if (!values.lastName) {
+            errors.lastName = "lastName is Required";
           }
           return errors;
         }}
@@ -22,6 +25,7 @@ export default function Signup() {
       >
         {({ isSubmitting }) => (
           <Form>
+            <div>firstName</div>
             <Field type="text" name="firstName" />
             <br />
             <ErrorMessage name="firstName" component="div" />
