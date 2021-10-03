@@ -68,11 +68,11 @@ export default function Contact() {
               )}
 
               {/* last name form */}
-              <label htmlFor="last name" style={{ display: "block" }}>
+              <label htmlFor="lastName" style={{ display: "block" }}>
                 Last Name
               </label>
               <input
-                id="last name"
+                id="lastName"
                 placeholder="Enter your last name"
                 type="text"
                 value={values.lastName}
@@ -131,11 +131,11 @@ export default function Contact() {
               )}
 
               {/* message box, not a required input */}
-              <label htmlFor="message" style={{ display: "block" }}>
+              <label htmlFor="messageBox" style={{ display: "block" }}>
                 Message Box
               </label>
               <textarea
-                id="message"
+                id="messageBox"
                 placeholder="Enter your message here"
                 type="text"
                 value={values.messageBox}
