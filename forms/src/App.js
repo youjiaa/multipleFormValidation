@@ -18,9 +18,6 @@ import {
   Link
 } from "react-router-dom";
 
-
-
-
 function App() {
   return (
     <div className="App">
@@ -68,12 +65,12 @@ function App() {
 
         <Collapsible trigger="Standard Forms" >
           <nav> 
-            <ul className="table">
-              <li>
-                <Link to="/standard-login">Login</Link>
-                </li>
+              <ul className="table">
               <li>
                 <Link to="/standard-signup">Sign Up</Link>
+                </li>
+              <li>
+                <Link to="/standard-login">Sign In</Link>
                 </li>
               <li>
                 <Link to="/standard-account">Account</Link>
@@ -102,8 +99,6 @@ function App() {
         </div>
         </Collapsible>
        
-
-      
       </div>
     </Router>
     </div>
