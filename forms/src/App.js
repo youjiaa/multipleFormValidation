@@ -1,6 +1,6 @@
 import './App.css';
-import Signin from "./advanced-forms/signup"
-import Login from "./advanced-forms/signin"
+import Signup from "./advanced-forms/signup"
+import Signin from "./advanced-forms/signin"
 import Account from "./advanced-forms/account"
 import Contact from "./advanced-forms/contact"
 
@@ -20,10 +20,10 @@ function App() {
         <nav >
           <ul className="table">
           <li>
-              <Link to="/signin">Sign In</Link>
+              <Link to="/signup">Sign Up</Link>
               </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/signin">Sign In</Link>
               </li>
             <li>
               <Link to="/account">Account</Link>
@@ -39,8 +39,8 @@ function App() {
           <Route path="/signin">
             <Signin />
             </Route>
-          <Route path="/login">
-            <Login />
+          <Route path="/signup">
+            <Signup />
           </Route>
           <Route path="/account">
             <Account />
