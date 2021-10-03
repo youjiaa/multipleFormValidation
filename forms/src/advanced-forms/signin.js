@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik } from 'formik';
 import './style.css'
 
-export default function Signup() {
+export default function Signin() {
     return (
      <Formik
        initialValues={{ email: '', password: '' }}

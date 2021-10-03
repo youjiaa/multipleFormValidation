@@ -1,8 +1,8 @@
 import './App.css';
-import Signin from "./form/signin"
-import Signup from "./form/signup"
-import Account from "./form/account"
-import Contact from "./form/contact"
+import Signin from "./advanced-forms/signup"
+import Signup from "./advanced-forms/signin"
+import Account from "./advanced-forms/account"
+import Contact from "./advanced-forms/contact"
 
 import {
   BrowserRouter as Router,
