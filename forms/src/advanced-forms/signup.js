@@ -2,10 +2,10 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import './style.css'
 
-export default function Signin() {
+export default function Signup() {
   return (
     <>
-      <h1>This is the Sign In Form</h1>
+      <h1>This is the Sign Up Form</h1>
       <Formik
         initialValues={{ firstName: "", lastName: "" }}
         validate={values => {
