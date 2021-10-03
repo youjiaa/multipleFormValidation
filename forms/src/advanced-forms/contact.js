@@ -1,11 +1,23 @@
 import React from 'react'
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import './style.css'
 
 export default function Contact() {
-    return (
-<Formik
+  return (
+    <>
+    <h1>This is the Contact Me Form</h1>
+
+    {/* First Name Form*/}
+    <Formik
+      >
+
+
+    </Formik>
+
+
+    {/* Email Form*/}
+    <Formik
       initialValues={{ email: "" }}
       onSubmit={async values => {
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -67,5 +79,6 @@ export default function Contact() {
         );
       }}
     </Formik>
-    )
+    </>
+  )
 }
