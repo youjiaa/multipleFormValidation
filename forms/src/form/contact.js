@@ -68,24 +68,24 @@ export default function Contact() {
             )}
 
             {/* last name form */}
-            <label htmlFor="email" style={{ display: "block" }}>
-              Email
+            <label htmlFor="last name" style={{ display: "block" }}>
+              Last Name
             </label>
             <input
-              id="email"
-              placeholder="Enter your email"
+              id="last name"
+              placeholder="Enter your last name"
               type="text"
-              value={values.email}
+              value={values.lastName}
               onChange={handleChange}
               onBlur={handleBlur}
               className={
-                errors.email && touched.email
+                errors.lastName && touched.lastName
                   ? "text-input error"
                   : "text-input"
               }
             />
-            {errors.email && touched.email && (
-              <div className="input-feedback">{errors.email}</div>
+            {errors.lastName && touched.lastName && (
+              <div className="input-feedback">{errors.lastName}</div>
             )}
             
             {/* email form */}
