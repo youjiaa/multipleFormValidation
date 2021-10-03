@@ -1,6 +1,6 @@
 import './App.css';
 import Signin from "./form/signin"
-import Signup from "./form/signup"
+import Login from "./form/login"
 import Account from "./form/account"
 import Contact from "./form/contact"
 
@@ -19,17 +19,17 @@ function App() {
       <div>
         <nav >
           <ul className="table">
-            <li>
-              <Link to="/signup">Signup</Link>
+          <li>
+              <Link to="/signin">Sign In</Link>
               </li>
             <li>
-              <Link to="/signin">Signin</Link>
+              <Link to="/login">Login</Link>
               </li>
             <li>
               <Link to="/account">Account</Link>
               </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/contact">Contact Me</Link>
             </li>
           </ul>
         </nav>
@@ -39,8 +39,8 @@ function App() {
           <Route path="/signin">
             <Signin />
             </Route>
-          <Route path="/signup">
-            <Signup />
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/account">
             <Account />
