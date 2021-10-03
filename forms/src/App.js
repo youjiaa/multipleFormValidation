@@ -1,5 +1,5 @@
 import './App.css';
-import Login from "./advanced-forms/signup";
+import Signup from "./advanced-forms/signup";
 import Signin from "./advanced-forms/signin";
 import Account from "./advanced-forms/account";
 import Contact from "./advanced-forms/contact";
@@ -30,10 +30,10 @@ function App() {
           <nav >
             <ul className="table">
               <li>
-                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
                 </li>
               <li>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/signin">Sign In</Link>
                 </li>
               <li>
                 <Link to="/account">Account</Link>
@@ -46,10 +46,10 @@ function App() {
 
           <div className="container">
         <Switch>
-          <Route path="/login">
-            <Login />
-            </Route>
           <Route path="/signup">
+            <Signup />
+            </Route>
+          <Route path="/signin">
             <Signin />
           </Route>
           <Route path="/account">
