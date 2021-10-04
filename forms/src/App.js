@@ -5,7 +5,7 @@ import Account from "./advanced-forms/account";
 import Contact from "./advanced-forms/contact";
 
 import StandardSignin from "./standard-forms/signin";
-import StandardLogin from "./standard-forms/login";
+import StandardSignup from "./standard-forms/signup";
 import StandardAccount from "./standard-forms/accout";
 import StandardContact from "./standard-forms/contact";
 
@@ -70,7 +70,7 @@ function App() {
                 <Link to="/standard-signup">Sign Up</Link>
                 </li>
               <li>
-                <Link to="/standard-login">Sign In</Link>
+                <Link to="/standard-signin">Sign In</Link>
                 </li>
               <li>
                 <Link to="/standard-account">Account</Link>
@@ -87,7 +87,7 @@ function App() {
             <StandardSignin />
             </Route>
           <Route path="/standard-login">
-            <StandardLogin />
+            <StandardSignup />
           </Route>
           <Route path="/standard-account">
             <StandardAccount />

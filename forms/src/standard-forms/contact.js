@@ -57,10 +57,10 @@ export default function Contact() {
 
     const handleChangeEmail = (e) => {
         const value = e.target.value;
-        const isValidEmail = regexEmail.test(String(value));
+        const isValidEmail = regexEmail.test(value);
 
         setInput({
-            error: !isValidEmail,
+            errorEmail: !isValidEmail,
             touched: true,
             email: value,
         });
