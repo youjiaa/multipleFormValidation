@@ -26,19 +26,21 @@ export default function Signin() {
         if(!values.password){
           errors.password = 'Password is Required';
         } else if (
-          /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/        
+          !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(values.password)        
         ) {
-          errors.password = 'Invalid password input';
+          errors.password = 'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Charactert';
         }
           return errors;
       }}
 
-          onSubmit={({ setSubmitting }) => {
-            alert('Form validated successfully')
-            setSubmitting(false);
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(()=> {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+            }, 400)
         }}
       >
-      
+
       {({values, errors, touched, isSubmitting}) => (
         <Form>
           <label>Email:</label>
