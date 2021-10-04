@@ -79,7 +79,6 @@ export default function SignUp() {
   }
 
   return (
-    <div classfName="App">
       <form onSubmit={handleSubmit}>
       <label>First Name:</label>
         <input
@@ -140,6 +139,5 @@ export default function SignUp() {
           Submit
         </button>
       </form>
-    </div>
   );
 }
