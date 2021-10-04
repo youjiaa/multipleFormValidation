@@ -5,7 +5,6 @@ class SignIn extends React.Component {
     super();
     this.state = {
       input: {},
-      errors: {},
       emailError: '',
       pwdError: ''
     };
@@ -27,48 +26,43 @@ class SignIn extends React.Component {
 
      
     EmailBlur() {
-        let input = this.state.input;
-        let errors = {};
+      let input = this.state.input;
       let isValid = true;
-      
+      let emailError = "";
+
         if (!input["email"]) {
           isValid = false;
-          this.setState({emailError: "Please enter your email Address."})
-          errors["email"] = "Please enter your email Address.";
+          emailError="email is Required";
       }
   
       if (typeof input["email"] !== "undefined") {
-          
-        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if (!pattern.test(input["email"])) {
+        if (input["email"].length === 0) {
           isValid = false;
-          this.setState({emailError: "Please enter valid email address."})
-          errors["email"] = "Please enter valid email address.";
+          emailError = "email is Required";
+        }else{
+
+          var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+          if (!pattern.test(input["email"])) {
+            isValid = false;
+            emailError = "Invalid email address";
+          }
         }
       }
-        this.setState({
-            errors: errors
-        });
-      
-          // this.setState({emailError: ""})
-        return isValid;
+      this.setState({ emailError: emailError })
+      return isValid;
     }
 
     pwdBlur() {
         let input = this.state.input;
-        let errors = {};
+        let pwdError = "";
         let isValid = true;
         
         if (!input["password"]) {
           isValid = false;
-          this.setState({pwdError: "Please enter your password."})
-        errors["password"] = "Please enter your password.";
+          pwdError = "Please enter your password."
       }
 
-      this.setState({
-        errors: errors
-      });
-      // this.setState({pwdError: ""})
+      this.setState({pwdError: pwdError})
       return isValid;
     }
          
