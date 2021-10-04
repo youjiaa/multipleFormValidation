@@ -20,7 +20,13 @@ export default function Contact() {
         email: "",
         message: "",
     });
-    const [errorMessage, setErrorMessage] = React.useState("");
+    const [errorMessage, setErrorMessage] = React.useState({
+        firstNameError: "",
+        lastNameError: "",
+        emailError: "",
+        phoneError: "",
+        boxError: ""
+    });
     const [isClicking, setIsClicking] = React.useState(false);
     const [isDisabled, setIsDisabled] = React.useState(false);
     let isSubmitting = false;
@@ -30,13 +36,14 @@ export default function Contact() {
         const isValidName = regexName.test(value);
 
         setInput({
+            ...input,
             errorFirstName: !isValidName,
             touched: true,
             firstName: value,
         });
 
         if (input.errorFirstName) {
-            setErrorMessage("First name is not valid");
+            setErrorMessage({firstNameError: "First name is not valid"});
         }
     };
 
@@ -45,13 +52,14 @@ export default function Contact() {
         const isValidName = regexName.test(value);
 
         setInput({
+            ...input,
             errorLastName: !isValidName,
             touched: true,
             lastName: value,
         });
 
         if (input.errorLastName) {
-            setErrorMessage("Last name is not valid");
+            setErrorMessage({lastNameError: "Last name is not valid"});
         }
     }
 
@@ -60,13 +68,14 @@ export default function Contact() {
         const isValidEmail = regexEmail.test(value);
 
         setInput({
+            ...input,
             errorEmail: !isValidEmail,
             touched: true,
             email: value,
         });
 
         if (input.errorEmail) {
-            setErrorMessage("Email is not valid");
+            setErrorMessage({emailError: "Email is not valid"});
         }
     }
 
@@ -75,13 +84,14 @@ export default function Contact() {
         const isValidPhone = regexPhone.test(value);
 
         setInput({
+            ...input,
             errorPhone: !isValidPhone,
             touched: true,
             phone: value,
         });
 
         if (input.errorPhone) {
-            setErrorMessage("Phone is not valid");
+            setErrorMessage({phoneError: "Phone is not valid"});
         }
     }
 
@@ -90,13 +100,14 @@ export default function Contact() {
         const isValidText = regexMessage.test(value);
 
         setInput({
+            ...input,
             error: !isValidText,
             touched: true,
             message: value,
         });
 
         if (input.errorBox) {
-            setErrorMessage("Input is not valid");
+            setErrorMessage({boxError: "Message is not valid"});
         }
     }
 
@@ -110,10 +121,21 @@ export default function Contact() {
         }
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(input)
+        const submission = {
+            FirstName: input.firstName, 
+            LastName: input.lastName, 
+            Email: input.email, 
+            Phone: input.phone, 
+            Message: input.message}
+        alert(JSON.stringify(submission, null, 2))
+    }
 
     return (
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName" style={{ display: "block" }}>
                     First Name
                 </label>
@@ -130,7 +152,7 @@ export default function Contact() {
                     }
                     required
                 />
-                {input.errorFirstName ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
+                {input.errorFirstName ? <p style={{ color: "red" }}>{errorMessage.firstNameError}</p> : ""}
 
                 <label htmlFor="lastName" style={{ display: "block" }}>
                     Last Name
@@ -148,7 +170,7 @@ export default function Contact() {
                     }
                     required
                 />
-                {input.errorLastName ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
+                {input.errorLastName ? <p style={{ color: "red" }}>{errorMessage.lastNameError}</p> : ""}
 
                 <label htmlFor="email" style={{ display: "block" }}>
                     Email
@@ -166,7 +188,7 @@ export default function Contact() {
                     }
                     required
                 />
-                {input.errorEmail ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
+                {input.errorEmail ? <p style={{ color: "red" }}>{errorMessage.emailError}</p> : ""}
 
                 <label htmlFor="phone" style={{ display: "block" }}>
                     Phone Number
@@ -183,7 +205,7 @@ export default function Contact() {
                             : "text-input"
                     }
                 />
-                {input.errorPhone ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
+                {input.errorPhone ? <p style={{ color: "red" }}>{errorMessage.phoneError}</p> : ""}
 
                 <label htmlFor="messageBox" style={{ display: "block" }}>
                     Message Box
@@ -201,7 +223,7 @@ export default function Contact() {
                     }
                     rows="10"
                 />
-                {input.errorBox ? <p style={{ color: "red" }}>{errorMessage}</p> : ""}
+                {input.errorBox ? <p style={{ color: "red" }}>{errorMessage.boxError}</p> : ""}
 
                 <button
                     type="button"
@@ -212,10 +234,9 @@ export default function Contact() {
                     Reset
                 </button>
                 {(input.firstName&&input.lastName&&input.email === null) ? isSubmitting === false : isSubmitting === true}
-                <button type="submit" disabled={isSubmitting}>
+                <button type="submit">
                     Submit
                 </button>
-
             </form>
         </>
     )

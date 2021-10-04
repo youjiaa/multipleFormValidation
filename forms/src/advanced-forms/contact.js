@@ -12,8 +12,7 @@ export default function Contact() {
 
       <Formik
         initialValues={{ firstName: "", lastName: "", email: "", phone: "", messageBox: "" }}
-        onSubmit={async values => {
-          await new Promise(resolve => setTimeout(resolve, 500));
+        onSubmit={values => {
           alert(JSON.stringify(values, null, 2));
         }}
 
