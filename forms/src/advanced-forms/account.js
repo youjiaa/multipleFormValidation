@@ -34,8 +34,8 @@ export default function Account() {
         pin: Yup.string()
             .required()
             .matches(/^[0-9]+$/, "Must be only digits")
-            .min(3, 'Enter a valid year')
-            .max(3, 'Enter a valid year'),
+            .min(3, 'Enter a valid pin')
+            .max(3, 'Enter a valid pin'),
       })}
     >
       {props => {
@@ -119,7 +119,7 @@ export default function Account() {
             <input
               id="pin"
               placeholder="Enter your pin"
-              type="number"
+              type="text"
               value={values.pin}
               onChange={handleChange}
               onBlur={handleBlur}

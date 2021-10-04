@@ -86,7 +86,7 @@ function App() {
           <Route path="/standard-signin">
             <StandardSignin />
             </Route>
-          <Route path="/standard-login">
+          <Route path="/standard-signup">
             <StandardSignup />
           </Route>
           <Route path="/standard-account">

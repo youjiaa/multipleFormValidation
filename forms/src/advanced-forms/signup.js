@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import './style.css'
+import * as Yup from 'yup';
 
 export default function Signup() {
   return (
@@ -25,6 +26,16 @@ export default function Signup() {
          }
           return errors;
         }}
+
+        validationSchema={Yup.object({
+          password: Yup.string().required('Password is required')
+            .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+    ),
+          rePassword: Yup.string()
+            .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        })}
+
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
@@ -75,7 +86,10 @@ export default function Signup() {
             <br />
 
             <label>Re-enter Password:</label>
-            <Field type="password" name="re-password" />
+            <Field type="password" name="rePassword" />
+            {errors.rePassword && touched.rePassword && (
+                <div className="input-feedback">{errors.rePassword}</div>
+              )}   
             <br />
 
             <button type="submit" disabled={isSubmitting}>
