@@ -13,8 +13,6 @@ export default function SignUp() {
   const [pwdError, setPwderror] = useState("");
   const [repwdError, setRepwderror] = useState(false);
 
-  const [dis, setDis] = useState(true);
-
   const validateFname = () => {
     if (!fName) {
       // console.log(Boolean(fName))
@@ -80,20 +78,26 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    let isFnamevalid = validateFname()
-    let isLnamevalid = validateLname()
-    let isEmailvalid = validateEmail()
-    let isPwdvalid = validatePwd()
-    let isRepwdvalid = repwdBlurData()
-    // if (//evoke and get return value instead of 
+
+    let isFnamevalid = validateFname();
+    let isLnamevalid = validateLname();
+    let isEmailvalid = validateEmail();
+    let isPwdvalid = validatePwd();
+    let isRepwdvalid = repwdBlurData();
+    // if (//evoke and get return value instead of
     //   validateFname() &&
     //   validateLname() &&
     //   validateEmail() &&
     //   validatePwd() &&
     //   repwdBlurData()
     // ) {
-    if (isFnamevalid && isLnamevalid  && isEmailvalid &&  isPwdvalid && isRepwdvalid){
+    if (
+      isFnamevalid &&
+      isLnamevalid &&
+      isEmailvalid &&
+      isPwdvalid &&
+      isRepwdvalid
+    ) {
       alert(
         JSON.stringify({
           "first name": fName,
@@ -114,7 +118,7 @@ export default function SignUp() {
         type="text"
         name="fName"
         value={fName} //one way data binding from model to view
-        onChange={(e) => setfName(e.target.value)}//the second way of event binding from view to model
+        onChange={(e) => setfName(e.target.value)} //the second way of event binding from view to model
       />
       {fNameError ? (
         <div className="input-feedback">First Name is required</div>
@@ -175,7 +179,9 @@ export default function SignUp() {
 
       <button
         type="submit"
-        disabled={fNameError || lNameError || emailError || pwdError || repwdError}
+        disabled={
+          fNameError || lNameError || emailError || pwdError || repwdError
+        }
       >
         Submit
       </button>

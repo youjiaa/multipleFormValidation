@@ -8,7 +8,13 @@ export default function Signup() {
     <>
       <h1>This is the Sign Up Form</h1>
       <Formik
-        initialValues={{ firstName: "Patrick", lastName: "", email: "", password: "", rePassword:"" }}
+        initialValues={{
+          firstName: "Patrick",
+          lastName: "",
+          email: "",
+          password: "",
+          rePassword: "",
+        }}
         validate={(values) => {
           const errors = {};
           if (!values.firstName) {
@@ -45,22 +51,14 @@ export default function Signup() {
           }, 400);
         }}
       >
-{/*        render prop*/} 
-       {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          isValid,
-          dirty,
-        }) => (
+        {/* render prop */}
+        {({ isValid }) => (
           <Form>
             <label>First Name:</label>
-            <Field type="text" name="firstName"
-              onChange={(event) => alert(event.target.value)}
+            <Field
+              type="text"
+              name="firstName"
+              // onChange={(event) => alert(event.target.value)}
             />
             <ErrorMessage
               className="input-feedback"
@@ -79,37 +77,30 @@ export default function Signup() {
             <br />
 
             <label>Email:</label>
-            <input
-              type="email"
+            <Field type="email" name="email" />
+            <ErrorMessage
+              className="input-feedback"
               name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
+              component="div"
             />
-            <div className="input-feedback">
-              {errors.email && touched.email && errors.email}
-            </div>
-
             <br />
 
             <label>Password:</label>
-            <input
-              type="password"
+            <Field type="password" name="password" />
+            <ErrorMessage
+              className="input-feedback"
               name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
+              component="div"
             />
-            <div className="input-feedback">
-              {errors.password && touched.password && errors.password}
-            </div>
             <br />
 
             <label>Re-enter Password:</label>
             <Field type="password" name="rePassword" />
-            {errors.rePassword && touched.rePassword && (
-              <div className="input-feedback">{errors.rePassword}</div>
-            )}
+            <ErrorMessage
+              className="input-feedback"
+              name="rePassword"
+              component="div"
+            />
             <br />
             <button type="submit" disabled={!isValid}>
               Submit
