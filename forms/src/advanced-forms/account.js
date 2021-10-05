@@ -20,7 +20,8 @@ export default function Account() {
             .min(16, 'Enter a valid card number')
             .max(16, 'Enter a valid card number'),
         month: Yup.string()
-            .required()
+          .required()
+          .matches(/^[0-9]{1,2}$/, 'Enter a valid month')
             .test(
                 'is valid month?',
                 'Enter a valid month',
