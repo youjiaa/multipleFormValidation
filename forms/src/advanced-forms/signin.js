@@ -24,12 +24,12 @@ export default function Signin() {
           errors.email = 'Invalid email address';
         }
         if(!values.password){
-          errors.password = 'Password is Required';
-        } else if (
-          !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(values.password)        
-        ) {
-          errors.password = 'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Charactert';
-        }
+          errors.password = 'Please enter your password'; }
+        // } else if (
+        //   !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(values.password)        
+        // ) {
+        //   errors.password = 'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Charactert';
+        // }
           return errors;
       }}
 
@@ -43,11 +43,10 @@ export default function Signin() {
 
       {({values, errors, touched, isSubmitting}) => (
         <Form>
-          <label>Email:</label>
+          <label>Email Address:</label>
           <Field 
             type='email' 
             name='email' 
-            placeholder='Enter email'
             className={`form-control ${
               touched.email && errors.email ? "is-invalid" : ""}`}
           />
@@ -58,7 +57,6 @@ export default function Signin() {
           <Field
             type="password"
             name="password"
-            placeholder="Enter password"
             className={`form-control ${
               touched.password && errors.password ? "is-invalid" : ""}`}
           />

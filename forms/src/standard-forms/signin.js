@@ -5,7 +5,8 @@ class SignIn extends React.Component {
     super();
     this.state = {
       input: {},
-      errors: {}
+      emailError: '',
+      pwdError: ''
     };
      
     this.handleChange = this.handleChange.bind(this);
@@ -25,43 +26,43 @@ class SignIn extends React.Component {
 
      
     EmailBlur() {
-        let input = this.state.input;
-        let errors = {};
-        let isValid = true;
+      let input = this.state.input;
+      let isValid = true;
+      let emailError = "";
+
         if (!input["email"]) {
-        isValid = false;
-            errors["email"] = "Please enter your email Address.";
+          isValid = false;
+          emailError="email is Required";
       }
   
       if (typeof input["email"] !== "undefined") {
-          
-        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if (!pattern.test(input["email"])) {
+        if (input["email"].length === 0) {
           isValid = false;
-          errors["email"] = "Please enter valid email address.";
+          emailError = "email is Required";
+        }else{
+
+          var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+          if (!pattern.test(input["email"])) {
+            isValid = false;
+            emailError = "Invalid email address";
+          }
         }
       }
-        this.setState({
-            errors: errors
-        });
-        
-        return isValid;
+      this.setState({ emailError: emailError })
+      return isValid;
     }
 
     pwdBlur() {
         let input = this.state.input;
-        let errors = {};
+        let pwdError = "";
         let isValid = true;
         
         if (!input["password"]) {
-        isValid = false;
-        errors["password"] = "Please enter your password.";
+          isValid = false;
+          pwdError = "Please enter your password."
       }
 
-      this.setState({
-        errors: errors
-      });
-  
+      this.setState({pwdError: pwdError})
       return isValid;
     }
          
@@ -94,7 +95,7 @@ class SignIn extends React.Component {
             onBlur={this.EmailBlur}
             id="email" />
 
-        <div className="input-feedback">{this.state.errors.email}</div>
+        <div className="input-feedback">{this.state.emailError}</div>
         
 
         <label >Password:</label>
@@ -106,7 +107,7 @@ class SignIn extends React.Component {
             onBlur={this.pwdBlur}
             id="password" />
 
-            <div className="input-feedback">{this.state.errors.password}</div>
+            <div className="input-feedback">{this.state.pwdError}</div>
               
           <button type="submit">Submit</button>
         </form>
