@@ -41,7 +41,7 @@ export default function Signin() {
         }}
       >
 
-      {({values, errors, touched, isSubmitting}) => (
+      {({values, errors, touched, isSubmitting,isValid,dirty}) => (
         <Form>
           <label>Email Address:</label>
           <Field 
@@ -62,7 +62,7 @@ export default function Signin() {
           />
           <ErrorMessage className='input-feedback' name='password' component='div' />
           <br />
-          <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={!(isValid)}>
               Submit
           </button>
         </Form>

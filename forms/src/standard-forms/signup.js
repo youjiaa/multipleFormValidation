@@ -13,62 +13,74 @@ export default function SignUp() {
       const [pwdError, setPwderror] = useState("");
   const [repwdError, setRepwderror] = useState(false);
   
+      const [dis, setDis] = useState(true);
+
+
   const fNameBlurData = () => {
-    if (fName === '') {
-    setfNameerror(true);
-      return;
+    if (!fName) {
+      // console.log(Boolean(fName))
+      setfNameerror(true);
+      return false;
     }
     setfNameerror(false);
+    return true;
   };
-    
+
+  
   const lNameBlurData = () => {
-    if (lName === '') {
-    setlNameerror(true);
-      return;
+    if (!lName) {
+        setlNameerror(true);
+        return false;
     }
     setlNameerror(false);
+    return true;
   };
     
-    const emailRegex = /\S+@\S+\.\S+/;
-    const validateEmail = () => {
-        if (email === '') {
-            setEmailError("Email is required");
-            return;
-        } else {
-            if (emailRegex.test(email)) {
-                setEmailError('')
-                return;
-            } else {
-            setEmailError("Invalid email address");
-            }
+  const emailRegex = /\S+@\S+\.\S+/;
+  const validateEmail = () => {
+    if (!email) {
+          setEmailError("Email is required");
+          return false;
+      } else {
+      if (emailRegex.test(email)) {
+              setEmailError('')
+              return true;
+          } else {
+        setEmailError("Invalid email address");
+        return false;
+          }
       }
   };
     
-      const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-    const validatePwd = () => {
-        if (pwd === '') {
-            setPwderror("Password is required");
-            return;
+  const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+const validatePwd = () => {
+  if (!pwd) {
+        setPwderror("Password is required");
+        return false;
+    } else {
+    if (pwdRegex.test(pwd)) {
+          setPwderror('')
+          return true;
         } else {
-            if (pwdRegex.test(pwd)) {
-                setPwderror('')
-                return;
-            } else {
-            setPwderror( "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character");
-            }
+        setPwderror( "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character");
+    return false;    
+    }
       }
     };
 
   const repwdBlurData = () => {
     if (repwd !== pwd) {
     setRepwderror(true);
-      return;
+      return false;
     }
     setRepwderror(false);
+    return true;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    if (fNameBlurData() && lNameBlurData() && validateEmail() && validatePwd() && repwdBlurData()) {
+      
     alert(JSON.stringify({
       "first name": event.target.fName.value, 
       "last name": event.target.lName.value,
@@ -76,6 +88,7 @@ export default function SignUp() {
       "password": event.target.pwd.value,
       "re-password": event.target.repwd.value,
     }))
+    }
   }
 
   return (
@@ -135,7 +148,9 @@ export default function SignUp() {
         {repwdError ? <div className="input-feedback">Passwords must match</div> : null}
         <br />
         
-        <button type="submit">
+      <button type="submit"
+      disabled={fNameError || lName || emailError || pwdError ||repwdError}
+      >
           Submit
         </button>
       </form>

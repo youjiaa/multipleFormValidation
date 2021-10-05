@@ -48,7 +48,7 @@ export default function Signup() {
          touched,
          handleChange,
          handleBlur,
-         handleSubmit, isSubmitting }) => (
+         handleSubmit, isSubmitting,isValid,dirty }) => (
           <Form>
             <label>First Name:</label>
             <Field type="text" name="firstName" />
@@ -91,8 +91,7 @@ export default function Signup() {
                 <div className="input-feedback">{errors.rePassword}</div>
               )}   
             <br />
-
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={!(isValid)}>
               Submit
             </button>
           </Form>

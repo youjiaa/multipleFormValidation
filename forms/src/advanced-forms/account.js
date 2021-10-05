@@ -44,7 +44,7 @@ export default function Account() {
           values,
           touched,
           errors,
-          dirty,
+          isValid,dirty,
           isSubmitting,
           handleChange,
           handleBlur,
@@ -134,7 +134,7 @@ export default function Account() {
                 <div className="input-feedback">{errors.pin}</div>
               )}
             
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={!(isValid)}>
               Submit
             </button>
           </form>

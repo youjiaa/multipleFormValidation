@@ -97,40 +97,41 @@ export default function Accout() {
       <label>Card Number</label>
         <input
           onBlur={() => cardBlurData()}
-          type="text"
+        type="text"
+        placeholder="Enter your credit card number"
           name="card"
           value={card}
           onChange={e => setcard(e.target.value)}
         />
             {cardError !== '' ? <div className="input-feedback">{cardError}</div> : null}
-      <br />
       
     <label>Month</label>          
     <input
           type="number"
-          name="month"
+        name="month"
+        placeholder="Enter month"
         value={month}
         onBlur={validatemonth}
         onChange={e => setmonth(e.target.value)}
       />
         {monthError !== '' ? <div className="input-feedback">{monthError}</div> : null}
-      <br />
       
     <label>Year</label>
         <input
           onBlur={() => yearBlurData()}
           type="text"
-          name="year"
+        name="year"
+        placeholder="Enter year"
           value={year}
           onChange={e => setyear(e.target.value)}
         />
             {yearError !== '' ? <div className="input-feedback">{yearError}</div> : null}
-              <br />
 
    <label>Pin</label>          
     <input
           type="text"
-          name="pin"
+        name="pin"
+        placeholder="Enter your pin"
         value={pin}
         onBlur={validatepin}
         onChange={e => setpin(e.target.value)}
